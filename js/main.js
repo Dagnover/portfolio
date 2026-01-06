@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
   renderExperience();
   renderEducation();
+  renderSkills();
   
   // Toggle móvil
   initMobileMenu();
@@ -99,6 +100,21 @@ function renderEducation() {
       `).join('')}
     </ul>
   `;
+}
+
+// Renderizar habilidades
+function renderSkills() {
+  const container = document.getElementById('skills-container');
+  if (!container || !window.skills) return;
+  
+  container.innerHTML = window.skills.map(skill => `
+    <div class="tech-category">
+      <strong>${skill.category}:</strong>
+      <div class="tags">
+        ${skill.items.map(item => `<span class="tag">${item}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
 }
 
 // Toggle menú móvil

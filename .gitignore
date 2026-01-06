@@ -3,6 +3,19 @@
 .AppleDouble
 .LSOverride
 
+# Images
+img/*.jpg
+img/*.png
+img/*.gif
+img/*.svg
+img/*.webp
+img/*.jpeg
+img/*.bmp
+img/*.tiff
+img/*.ico
+
+.estructura.md
+
 # Python
 __pycache__/
 *.py[cod]
