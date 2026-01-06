@@ -1,125 +1,214 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tu Nombre — Portafolio | Ingeniero Cloud, SysAdmin & DevOps</title>
-  <meta name="description" content="Portafolio profesional de Ingeniero Cloud enfocado en SysAdmin y DevOps. Proyectos, experiencia, cursos y visión a 5 años." />
-  <meta name="theme-color" content="#0b0b0b" />
-  <meta property="og:title" content="Portafolio — Ingeniero Cloud" />
-  <meta property="og:description" content="Proyectos, experiencia y visión de carrera en Cloud, DevOps y SysAdmin." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://example.com" />
-  <meta property="og:image" content="https://example.com/og-image.png" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0b0b'/%3E%3Ctext x='50' y='58' font-size='54' text-anchor='middle' fill='%23fff' font-family='system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, Cantarell, sans-serif'%3E%C2%A7%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Cristian Machado - Especialista Cloud & SysAdmin / DevOps con experiencia en AWS, Azure, automatización e infraestructura">
+        <link rel="stylesheet" href="css/styles.css">
+    <title>Cristian Machado | Cloud & SysAdmin / DevOps</title>
+    </head>
+    <body>
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-  <header>
-    <div class="container nav" role="navigation" aria-label="Navegación principal">
-      <a class="brand" href="#" aria-label="Inicio">
-        <dot></dot>
-        <span>Cristian Dagnover Machado</span>
-      </a>
+    <!-- Header -->
+        <header class="header">
+        <nav class="nav container">
+            <a href="#inicio" class="brand">
+                <dot></dot>
+                <span>Cristian Machado</span>
+            </a>
+            <button class="hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+            </button>
+            <ul class="menu" id="main-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#formacion">Formación</a></li>
+                <li><a href="#vision">Visión</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
 
-      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
-        <span></span>
-      </button>
+    <main id="main-content">
+        <!-- Hero / Inicio -->
+        <section id="inicio" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="profile-section">
+                        <img src="assets/img/profile.jpg" alt="Cristian Machado" class="profile-image">
+                    </div>
+                    <div class="hero-text">
+                        <h1>Cloud & SysAdmin / DevOps</h1>
+                        <p class="lead">
+                            Especialista en infraestructura cloud, automatización y operaciones. 
+                            Enfoque en <strong>seguridad, gobernanza, eficiencia operativa y mejora continua</strong>.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="#proyectos" class="btn">Ver Proyectos</a>
+                            <a href="#contacto" class="btn secondary">Contactar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <nav id="menu" class="menu" aria-label="Secciones del sitio">
-        <a href="#proyectos">Proyectos</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#cursos">Cursos</a>
-        <a href="#vision">Visión</a>
-      </nav>
-    </div>
-  </header>
+        <!-- Sobre mí -->
+        <section id="sobre-mi" class="section">
+            <div class="container">
+                <h2>Sobre mí</h2>
+                <div class="section-intro">
+                    <p>
+                        Perfil <strong>autodidacta</strong>, orientado a resultados y a la mejora continua. 
+                        Me adapto rápido a entornos exigentes, priorizando soluciones prácticas con foco en 
+                        <strong>estabilidad, seguridad y estandarización</strong>.
+                    </p>
+                    <p>
+                        Interés activo en fortalecer habilidades en <strong>AWS y Azure</strong>, y en crear 
+                        automatizaciones que reduzcan error humano y mejoren el control operativo.
+                    </p>
+                </div>
+                
+                <div class="stack-l" style="margin-top: 2rem;">
+                    <div>
+                        <h3>Stack técnico</h3>
+                        <div class="tech-grid">
+                            <div class="tech-category">
+                                <strong>Cloud:</strong>
+                                <div class="tags">
+                                    <span class="tag">AWS (EC2, VPC, S3, RDS, IAM)</span>
+                                    <span class="tag">CloudFormation</span>
+                                    <span class="tag">API Gateway</span>
+                                    <span class="tag">CloudFront</span>
+                                    <span class="tag">ACM</span>
+                                    <span class="tag">EKS</span>
+                                    <span class="tag">Azure AD</span>
+                                    <span class="tag">Office 365</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <strong>Sistemas:</strong>
+                                <div class="tags">
+                                    <span class="tag">Windows Server (2003-2019)</span>
+                                    <span class="tag">Linux (Ubuntu, CentOS)</span>
+                                    <span class="tag">IIS</span>
+                                    <span class="tag">SSL/Dominios</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <strong>Infraestructura:</strong>
+                                <div class="tags">
+                                    <span class="tag">VMware</span>
+                                    <span class="tag">SFTP/FTP/SAMBA</span>
+                                    <span class="tag">Backups LTO</span>
+                                    <span class="tag">Disaster Recovery</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <main id="contenido" class="container stack-l">
-    <!-- HERO -->
-    <section class="hero stack">
-      <h1>Ingeniero Cloud — <span style="color:var(--accent)">SysAdmin & DevOps</span></h1>
-      <p class="lead">Diseño, automatizo y opero plataformas seguras en AWS y entornos híbridos. Me enfoco en Infraestructura como Código, CI/CD, observabilidad y gobierno cloud sin ruido innecesario.</p>
-      <div class="hero-cta">
-        <a class="btn" href="#proyectos">Ver proyectos</a>
-        <a class="btn secondary" href="mailto:tu.email@ejemplo.com" title="Escríbeme">Contacto</a>
-      </div>
-    </section>
+        <!-- Proyectos -->
+        <section id="proyectos" class="section">
+            <div class="container">
+                <h2>Proyectos</h2>
+                <p class="section-intro">
+                    Casos reales y demostrables: arquitecturas, automatizaciones, IaC, gobierno cloud y mejoras operativas.
+                </p>
+                <div class="grid" id="projects-container">
+                    <!-- Renderizado dinámicamente por main.js -->
+                </div>
+            </div>
+        </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="stack">
-      <div class="stack-s">
-        <h2>Proyectos destacados</h2>
-        <p class="section-intro">Selección de trabajos que sintetizan mi experiencia en arquitectura, automatización y seguridad. Código limpio, documentación clara y entrega continua.</p>
-      </div>
-      <div class="grid" id="projects-grid" aria-live="polite"></div>
-    </section>
+        <!-- Experiencia -->
+        <section id="experiencia" class="section">
+            <div class="container">
+                <h2>Experiencia</h2>
+                <p class="section-intro">
+                    Timeline por empresa, con responsabilidades clave y tecnologías utilizadas.
+                </p>
+                <div class="timeline" id="experience-container">
+                    <!-- Renderizado dinámicamente por main.js -->
+                </div>
+            </div>
+        </section>
 
-    <!-- EXPERIENCIA -->
-    <section id="experiencia" class="stack">
-      <div class="stack-s">
-        <h2>Experiencia</h2>
-        <p class="section-intro">Trayectoria en equipos de plataforma y gobierno cloud, integrando mejores prácticas de seguridad, FinOps y confiabilidad.</p>
-      </div>
-      <div class="timeline" id="xp-timeline" aria-live="polite"></div>
-    </section>
+        <!-- Formación -->
+        <section id="formacion" class="section">
+            <div class="container">
+                <h2>Cursos y formación</h2>
+                <p class="section-intro">
+                    Certificaciones y cursos en AWS, Azure, y estudios técnicos.
+                </p>
+                <div id="education-container">
+                    <!-- Renderizado dinámicamente por main.js -->
+                </div>
+            </div>
+        </section>
 
-    <!-- CURSOS -->
-    <section id="cursos" class="stack">
-      <div class="stack-s">
-        <h2>Cursos & certificaciones</h2>
-        <p class="section-intro">Aprendizaje continuo para mantenerme al día con la evolución del ecosistema cloud y DevOps.</p>
-      </div>
-      <ul class="list" id="courses-list" aria-live="polite"></ul>
-    </section>
+        <!-- Visión a 5 años -->
+        <section id="vision" class="section">
+            <div class="container">
+                <h2>Visión a 5 años</h2>
+                <div class="vision">
+                    <p>
+                        <strong>Objetivos profesionales:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Arquitectura Cloud:</strong> Especialización en diseño de arquitecturas cloud escalables, seguras y cost-optimized en AWS y Azure.</li>
+                        <li><strong>Gobierno Cloud:</strong> Liderar iniciativas de gobierno cloud, políticas de seguridad, compliance y mejores prácticas.</li>
+                        <li><strong>Automatización:</strong> Profundizar en IaC (Terraform, CloudFormation), CI/CD pipelines y automatización completa de operaciones.</li>
+                        <li><strong>Liderazgo técnico:</strong> Contribuir como arquitecto cloud senior, mentoría y transferencia de conocimiento.</li>
+                        <li><strong>FinOps:</strong> Especialización en optimización de costos cloud y gestión financiera de infraestructura.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <!-- VISION -->
-    <section id="vision" class="stack">
-      <div class="stack-s">
-        <h2>Visión a 5 años</h2>
-      </div>
-      <div class="vision">
-        <p id="vision-copy">Consolidar un centro de excelencia de plataforma que automatice el ciclo de vida de cuentas y cargas de trabajo en múltiples nubes, habilitando despliegues seguros y trazables en minutos. Mi foco: IaC modular, controles preventivos (SCP, OPA), observabilidad desde el diseño y cultura de entrega basada en datos.</p>
-      </div>
-    </section>
-  </main>
+        <!-- Contacto -->
+        <section id="contacto" class="section">
+            <div class="container">
+                <h2>Contacto</h2>
+                <p class="section-intro">
+                    Conectemos a través de canales profesionales.
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p>Estoy disponible para oportunidades profesionales, colaboraciones y proyectos relacionados con cloud, DevOps e infraestructura.</p>
+                        <div class="social">
+                            <a href="https://linkedin.com/in/cristianmachado" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <span class="icon">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/cristianmachado" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <span class="icon">GitHub</span>
+                            </a>
+                            <a href="mailto:contacto@cristianmachado.dev" aria-label="Email">
+                                <span class="icon">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <footer class="container stack">
-    <div class="stack-s">
-      <strong>¿Hablamos?</strong>
-      <p>Disponible para colaborar en arquitectura, automatización y gobierno cloud.</p>
-      <div class="social">
-        <a href="https://github.com/tuusuario" aria-label="GitHub" class="icon" title="GitHub" target="_blank" rel="noopener noreferrer"> 
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.1-.74.08-.72.08-.72 1.22.09 1.86 1.25 1.86 1.25 1.08 1.86 2.83 1.33 3.52 1.02.11-.79.42-1.33.76-1.64-2.66-.3-5.47-1.34-5.47-5.97 0-1.32.47-2.39 1.25-3.23-.13-.31-.54-1.56.12-3.26 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.7.25 2.95.12 3.26.78.84 1.25 1.91 1.25 3.23 0 4.64-2.81 5.67-5.49 5.97.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .5Z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/tuusuario" aria-label="LinkedIn" class="icon" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.6h.06c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.08V21h-4v-4.8c0-1.14-.02-2.6-1.58-2.6-1.58 0-1.82 1.23-1.82 2.52V21H9z"/></svg>
-        </a>
-        <a href="mailto:tu.email@ejemplo.com" aria-label="Correo" class="icon" title="Correo">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 13.065 1.5 6.75V18a1.5 1.5 0 0 0 1.5 1.5h18a1.5 1.5 0 0 0 1.5-1.5V6.75L12 13.065ZM21 4.5H3L12 10.5 21 4.5Z"/></svg>
-        </a>
-      </div>
-    </div>
-    <small>© <span id="year"></span> Tu Nombre. Hecho con HTML, CSS y JavaScript.</small>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Derechos reservados &copy; 2025 Cristian Machado</p>
+        </div>
+        </footer>
 
-  <!-- Datos estructurados para SEO (ajusta con tus datos reales) -->
-  <script type="application/ld+json" id="schema-person">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Tu Nombre",
-    "jobTitle": "Ingeniero Cloud / DevOps",
-    "url": "https://example.com",
-    "sameAs": [
-      "https://github.com/tuusuario",
-      "https://www.linkedin.com/in/tuusuario"
-    ]
-  }
-  </script>
-
-  <script src="js/script.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="js/data/projects.js"></script>
+    <script src="js/data/experience.js"></script>
+    <script src="js/data/education.js"></script>
+    <script src="js/main.js"></script>
+    </body>
 </html>
