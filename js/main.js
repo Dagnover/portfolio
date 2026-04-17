@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modal de experiencia
   initExperienceModal();
+  
+  // Modal de habilidades
+  initSkillsModal();
 });
 
 // Navegación suave
@@ -91,18 +94,22 @@ function renderEducation() {
   `;
 }
 
-// Renderizar habilidades
+// Renderizar habilidades (tarjetas clicables)
 function renderSkills() {
   const container = document.getElementById('skills-container');
   if (!container || !window.skills) return;
 
   container.innerHTML = window.skills.map(skill => `
-    <div class="tech-category">
-      <strong>${skill.category}:</strong>
-      <div class="tags">
-        ${skill.items.map(item => `<span class="tag">${item}</span>`).join('')}
+    <button class="skill-card" data-id="${skill.id}" aria-label="Ver detalles de ${skill.category}" style="border-color: ${skill.color}20;">
+      <div class="skill-card-icon" style="background: ${skill.color}20;">
+        <span style="font-size: 2rem;">${skill.icon}</span>
       </div>
-    </div>
+      <h3 style="color: ${skill.color};">${skill.category}</h3>
+      <p class="skill-card-description">${skill.description}</p>
+      <div class="skill-card-count">
+        ${skill.items.length} tecnología${skill.items.length !== 1 ? 's' : ''} →
+      </div>
+    </button>
   `).join('');
 }
 
@@ -286,4 +293,73 @@ function renderPersonalProjects() {
       </div>
     </article>
   `).join('');
+}
+
+// ── Modal de habilidades ──────────────────────────────────────────
+
+function initSkillsModal() {
+  // Delegación de eventos en el contenedor de habilidades
+  const skillsContainer = document.getElementById('skills-container');
+  if (skillsContainer) {
+    skillsContainer.addEventListener('click', (e) => {
+      const card = e.target.closest('.skill-card');
+      if (!card) return;
+      openSkillsModal(parseInt(card.dataset.id, 10));
+    });
+  }
+
+  // Cerrar con overlay o botón close
+  const modal = document.getElementById('skills-modal');
+  const overlay = document.getElementById('skills-modal-overlay');
+  const closeBtn = document.getElementById('skills-modal-close');
+
+  if (overlay) overlay.addEventListener('click', closeSkillsModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeSkillsModal);
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSkillsModal();
+  });
+}
+
+function openSkillsModal(id) {
+  const skill = (window.skills || []).find(s => s.id === id);
+  if (!skill) return;
+
+  // Construir título con icono
+  const titleElement = document.getElementById('skills-modal-title');
+  titleElement.innerHTML = `
+    <span style="font-size: 1.8rem; margin-right: 0.5rem;">${skill.icon}</span>
+    <span style="color: ${skill.color};">${skill.category}</span>
+  `;
+
+  // Construir contenido
+  document.getElementById('skills-modal-body').innerHTML = `
+    <p class="skills-modal-description">${skill.description}</p>
+    
+    <h4>Tecnologías y herramientas</h4>
+    <div class="skills-modal-grid">
+      ${skill.items.map(item => `
+        <div class="skill-item">
+          <span class="skill-item-icon">${item.icon}</span>
+          <span class="skill-item-name">${item.name}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  const modal = document.getElementById('skills-modal');
+  modal.classList.add('active');
+  modal.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Focus en el botón de cierre para accesibilidad
+  setTimeout(() => document.getElementById('skills-modal-close').focus(), 50);
+}
+
+function closeSkillsModal() {
+  const modal = document.getElementById('skills-modal');
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }

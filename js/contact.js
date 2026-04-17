@@ -10,20 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('submit-btn');
 
   // Inicializar EmailJS
-  // NOTA: Necesitas configurar tus credenciales de EmailJS
-  // Reemplaza 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_PUBLIC_KEY' con tus valores
-  // Ver instrucciones en EMAILJS_SETUP.md
   let emailjsConfigured = false;
   if (typeof emailjs !== 'undefined') {
     try {
-      const publicKey = 'YOUR_PUBLIC_KEY'; // Reemplaza con tu Public Key
-      if (publicKey !== 'YOUR_PUBLIC_KEY') {
-        emailjs.init(publicKey);
-        emailjsConfigured = true;
-      }
+      const publicKey = 'YizWoeiP-m-o0n5VH';
+      emailjs.init(publicKey);
+      emailjsConfigured = true;
+      console.log('EmailJS inicializado correctamente');
     } catch (error) {
-      console.warn('EmailJS no está configurado correctamente:', error);
+      console.error('Error al inicializar EmailJS:', error);
     }
+  } else {
+    console.error('EmailJS no está cargado');
   }
 
   // Abrir modal
@@ -93,9 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Verificar si EmailJS está configurado
       if (!emailjsConfigured || typeof emailjs === 'undefined') {
+        console.error('EmailJS no está configurado');
         showMessage('El servicio de correo no está configurado. Por favor contáctame directamente a dagnover4030@gmail.com', 'error');
         return;
       }
+
+      console.log('Enviando email con EmailJS...');
 
       // Deshabilitar botón de envío
       submitBtn.disabled = true;
@@ -103,27 +104,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         // Configuración de EmailJS
-        // IMPORTANTE: Configura estos valores con tus credenciales de EmailJS
-        const serviceID = 'YOUR_SERVICE_ID'; // Reemplaza con tu Service ID
-        const templateID = 'YOUR_TEMPLATE_ID'; // Reemplaza con tu Template ID
+        const serviceID = 'service_io3su9v';
+        const templateID = 'template_029cn5k';
         
-        // Verificar que las credenciales estén configuradas
-        if (serviceID === 'YOUR_SERVICE_ID' || templateID === 'YOUR_TEMPLATE_ID') {
-          throw new Error('EmailJS no está configurado. Por favor configura tus credenciales en contact.js');
-        }
+        console.log('Service ID:', serviceID);
+        console.log('Template ID:', templateID);
         
-        // Parámetros del template
+        // Parámetros del template - deben coincidir exactamente con EmailJS
         const templateParams = {
-          from_name: name,
-          from_email: email,
-          subject: subject,
-          message: message,
-          to_email: 'dagnover4030@gmail.com'
+          to_name: 'dagnover4030@gmail.com',
+          from_name: email,
+          reply_to: email,
+          message: `Nombre: ${name}\nAsunto: ${subject}\n\n${message}`,
+          email: 'dagnover4030@gmail.com'
         };
+        
+        console.log('Parámetros del template:', templateParams);
 
         // Enviar correo usando EmailJS
-        await emailjs.send(serviceID, templateID, templateParams);
+        const response = await emailjs.send(serviceID, templateID, templateParams);
         
+        console.log('Respuesta de EmailJS:', response);
         showMessage('¡Mensaje enviado exitosamente! Te responderé pronto.', 'success');
         contactForm.reset();
         
@@ -133,8 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
         
       } catch (error) {
-        console.error('Error al enviar el correo:', error);
-        showMessage('Hubo un error al enviar el mensaje. Por favor intenta nuevamente o contáctame directamente a dagnover4030@gmail.com', 'error');
+        console.error('Error completo al enviar el correo:', error);
+        console.error('Error text:', error.text);
+        console.error('Error status:', error.status);
+        
+        let errorMessage = 'Hubo un error al enviar el mensaje. ';
+        
+        if (error.text) {
+          errorMessage += `Error: ${error.text}. `;
+        }
+        
+        errorMessage += 'Por favor intenta nuevamente o contáctame directamente a dagnover4030@gmail.com';
+        
+        showMessage(errorMessage, 'error');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar';
