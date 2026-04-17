@@ -4,16 +4,17 @@ window.skills = [
     category: "AWS",
     items: [
       "EC2", "VPC", "S3", "RDS", "IAM", "CloudFormation", 
-      "API Gateway", "Cost Explorer", "EKS", "CloudFront", 
-      "ACM", "AWS Backup", "Service Catalog", "Control Tower", 
-      "Organizations"
+      "API Gateway", "Cost Explorer", "EKS", "Lambda",
+      "CloudFront", "ACM", "CloudWatch", "Config",
+      "AWS Backup", "Service Catalog", "Control Tower", 
+      "Organizations", "Storage Gateway", "FSx"
     ]
   },
   {
     category: "Azure",
     items: [
       "Azure Active Directory", 
-      "Administración de servidores", 
+      "Azure VMs",
       "Azure Repos", 
       "Azure Pipelines"
     ]
@@ -23,7 +24,18 @@ window.skills = [
     items: [
       "Terraform", 
       "CloudFormation", 
-      "Ansible"
+      "Ansible",
+      "Azure DevOps Pipelines"
+    ]
+  },
+  {
+    category: "Inteligencia Artificial",
+    items: [
+      "Prompt Engineering",
+      "MCPs (Model Context Protocol)",
+      "Agentes IA",
+      "LLMs",
+      "Skills"
     ]
   },
   {
@@ -43,10 +55,12 @@ window.skills = [
   {
     category: "Seguridad y Redes",
     items: [
+      "IAM", 
+      "SCPs",
       "Firewalls", 
       "VPNs", 
       "SFTP/FTP", 
-      "SAMBA"
+      "Certificados SSL"
     ]
   },
   {
@@ -54,7 +68,7 @@ window.skills = [
     items: [
       "Office 365", 
       "IIS", 
-      "Gestión de certificados SSL (ACM)"
+      "Active Directory"
     ]
   }
 ];

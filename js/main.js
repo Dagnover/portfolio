@@ -2,15 +2,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Navegación suave y activación de menú
   initNavigation();
-  
+
   // Renderizar secciones dinámicas
-  renderProjects();
   renderExperience();
   renderEducation();
   renderSkills();
-  
+  renderLanguages();
+
   // Toggle móvil
   initMobileMenu();
+
+  // Botón volver arriba
+  initScrollToTop();
+
+  // Modal de experiencia
+  initExperienceModal();
 });
 
 // Navegación suave
@@ -20,12 +26,11 @@ function initNavigation() {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
       if (href === '#') return;
-      
+
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Actualizar aria-current
         links.forEach(l => l.removeAttribute('aria-current'));
         link.setAttribute('aria-current', 'page');
       }
@@ -33,59 +38,42 @@ function initNavigation() {
   });
 }
 
-// Renderizar proyectos
-function renderProjects() {
-  const container = document.getElementById('projects-container');
-  if (!container || !window.projects) return;
-  
-  container.innerHTML = window.projects.map(project => `
-    <article class="card">
-      <div class="card-header">
-        <h3>${project.title}</h3>
-        <span class="tag">${project.category}</span>
-      </div>
-      <p>${project.description}</p>
-      <div class="card-tech">
-        ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
-      </div>
-      ${project.metrics ? `
-        <div class="card-metrics">
-          ${Object.entries(project.metrics).map(([key, value]) => 
-            `<small><strong>${key}:</strong> ${value}</small>`
-          ).join('')}
-        </div>
-      ` : ''}
-    </article>
-  `).join('');
-}
-
-// Renderizar experiencia
+// Renderizar galería de experiencia (tarjetas clicables)
 function renderExperience() {
   const container = document.getElementById('experience-container');
   if (!container || !window.experience) return;
-  
-  container.innerHTML = window.experience.map(exp => `
-    <div class="item">
-      <h3>${exp.position} <span class="company">— ${exp.company}</span></h3>
-      <div class="when">${exp.period}</div>
-      <ul>
-        ${exp.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-      </ul>
-      <div class="tech-stack">
-        <strong>Tecnologías:</strong>
-        <div class="tags">
-          ${exp.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
+
+  container.innerHTML = window.experience.map(exp => {
+    const projectCount = (window.projects || []).filter(p => p.companyId === exp.id).length;
+    return `
+      <button class="exp-card" data-id="${exp.id}" aria-label="Ver detalles de ${exp.company}">
+        <div class="exp-card-header">
+          <div class="exp-header-left">
+            ${exp.logo ? `<img src="${exp.logo}" alt="${exp.company} logo" class="exp-logo">` : ''}
+            <div>
+              <h3>${exp.company}</h3>
+              <p class="exp-position">${exp.position}</p>
+            </div>
+          </div>
+          <span class="exp-period">${exp.period}</span>
         </div>
-      </div>
-    </div>
-  `).join('');
+        <div class="exp-card-footer">
+          <div class="tags">
+            ${exp.technologies.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}
+            ${exp.technologies.length > 4 ? `<span class="tag">+${exp.technologies.length - 4}</span>` : ''}
+          </div>
+          <span class="exp-projects-count">${projectCount} proyecto${projectCount !== 1 ? 's' : ''} →</span>
+        </div>
+      </button>
+    `;
+  }).join('');
 }
 
 // Renderizar educación
 function renderEducation() {
   const container = document.getElementById('education-container');
   if (!container || !window.education) return;
-  
+
   container.innerHTML = `
     <ul class="list">
       ${window.education.map(edu => `
@@ -106,7 +94,7 @@ function renderEducation() {
 function renderSkills() {
   const container = document.getElementById('skills-container');
   if (!container || !window.skills) return;
-  
+
   container.innerHTML = window.skills.map(skill => `
     <div class="tech-category">
       <strong>${skill.category}:</strong>
@@ -117,29 +105,139 @@ function renderSkills() {
   `).join('');
 }
 
+// Renderizar idiomas
+function renderLanguages() {
+  const container = document.getElementById('languages-container');
+  if (!container || !window.languages) return;
+
+  container.innerHTML = `
+    <ul class="list">
+      ${window.languages.map(lang => `
+        <li>
+          <div><strong>${lang.language}</strong></div>
+          <small>${lang.level}</small>
+        </li>
+      `).join('')}
+    </ul>
+  `;
+}
+
+// ── Modal de detalle de experiencia ──────────────────────────────────────────
+
+function initExperienceModal() {
+  // Delegación de eventos en el contenedor de experiencia
+  const expContainer = document.getElementById('experience-container');
+  if (expContainer) {
+    expContainer.addEventListener('click', (e) => {
+      const card = e.target.closest('.exp-card');
+      if (!card) return;
+      openExperienceModal(parseInt(card.dataset.id, 10));
+    });
+  }
+
+  // Cerrar con overlay o botón close
+  const modal   = document.getElementById('exp-modal');
+  const overlay = document.getElementById('exp-modal-overlay');
+  const closeBtn = document.getElementById('exp-modal-close');
+
+  if (overlay)  overlay.addEventListener('click', closeExperienceModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeExperienceModal);
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeExperienceModal();
+  });
+}
+
+function openExperienceModal(id) {
+  const exp = (window.experience || []).find(e => e.id === id);
+  if (!exp) return;
+
+  const projects = (window.projects || []).filter(p => p.companyId === id);
+
+  // Construir contenido
+  const titleElement = document.getElementById('exp-modal-title');
+  if (exp.logo) {
+    titleElement.innerHTML = `
+      <img src="${exp.logo}" alt="${exp.company} logo" class="exp-modal-logo">
+      <span>${exp.company}</span>
+    `;
+  } else {
+    titleElement.textContent = exp.company;
+  }
+
+  document.getElementById('exp-modal-body').innerHTML = `
+    <p class="exp-modal-position">${exp.position} <span class="exp-modal-period">· ${exp.period}</span></p>
+
+    <h4>Responsabilidades</h4>
+    <ul class="exp-modal-list">
+      ${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}
+    </ul>
+
+    <h4>Tecnologías</h4>
+    <div class="tags" style="margin-bottom:1.5rem">
+      ${exp.technologies.map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>
+
+    ${projects.length ? `
+      <h4>Proyectos</h4>
+      <div class="exp-modal-projects">
+        ${projects.map(p => `
+          <article class="exp-project-card">
+            <div class="exp-project-header">
+              <span class="tag">${p.category}</span>
+            </div>
+            <h5>${p.title}</h5>
+            <p>${p.description}</p>
+            <div class="tags">
+              ${p.technologies.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            ${p.metrics ? `
+              <div class="exp-project-metrics">
+                ${Object.values(p.metrics).map(v => `<small>· ${v}</small>`).join('')}
+              </div>
+            ` : ''}
+          </article>
+        `).join('')}
+      </div>
+    ` : ''}
+  `;
+
+  const modal = document.getElementById('exp-modal');
+  modal.classList.add('active');
+  modal.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Focus en el botón de cierre para accesibilidad
+  setTimeout(() => document.getElementById('exp-modal-close').focus(), 50);
+}
+
+function closeExperienceModal() {
+  const modal = document.getElementById('exp-modal');
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
 // Toggle menú móvil
 function initMobileMenu() {
   const toggle = document.getElementById('nav-toggle');
-  const menu = document.getElementById('main-menu');
-  
+  const menu   = document.getElementById('main-menu');
+
   if (toggle && menu) {
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
       menu.classList.toggle('show');
-      const isOpen = menu.classList.contains('show');
-      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-expanded', menu.classList.contains('show'));
     });
-    
-    // Cerrar al hacer clic en un enlace
-    const menuLinks = menu.querySelectorAll('a');
-    menuLinks.forEach(link => {
+
+    menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('show');
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
-    
-    // Cerrar al hacer clic fuera
+
     document.addEventListener('click', (e) => {
       if (!menu.contains(e.target) && !toggle.contains(e.target)) {
         menu.classList.remove('show');
@@ -149,3 +247,19 @@ function initMobileMenu() {
   }
 }
 
+// Botón volver arriba
+function initScrollToTop() {
+  const scrollButton = document.getElementById('scroll-to-top');
+  if (!scrollButton) return;
+
+  function toggleScrollButton() {
+    scrollButton.classList.toggle('visible', window.scrollY > 300);
+  }
+
+  window.addEventListener('scroll', toggleScrollButton, { passive: true });
+  toggleScrollButton();
+
+  scrollButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}

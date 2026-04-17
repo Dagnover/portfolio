@@ -3,14 +3,15 @@ window.experience = [
   {
     id: 1,
     company: "EPAM",
+    logo: "assets/img/logo-epam.png",
     position: "Ingeniero Cloud DevOps",
     period: "Abr 2025 – Actualidad",
     responsibilities: [
-      "Definición de lineamientos de Gobierno Cloud para filiales externas",
-      "Automatizaciones y despliegues con AWS CloudFormation",
-      "Administración de SCPs, roles y políticas IAM",
-      "Despliegue de recursos mediante pipelines de Azure DevOps",
-      "Administración de Control Tower, Organizations y Service Catalog"
+      "Definición de lineamientos de gobierno cloud para arquitecturas multi-cuenta de filiales externas",
+      "Automatización de despliegues con AWS CloudFormation y pipelines de Azure DevOps",
+      "Implementación de SCPs y políticas IAM complejas para reducción de riesgos de seguridad",
+      "Administración de Control Tower, Organizations y Service Catalog para aceleración de aprovisionamiento",
+      "Implementación de soluciones con LLMs, MCPs y Agentes de IA"
     ],
     technologies: [
       "AWS CloudFormation",
@@ -21,19 +22,23 @@ window.experience = [
       "Azure DevOps",
       "Azure Pipelines",
       "SCPs (Service Control Policies)",
-      "Gobierno Cloud"
+      "LLMs",
+      "MCPs",
+      "Agentes IA"
     ]
   },
   {
     id: 2,
     company: "AXITY",
+    logo: "assets/img/logo-axity.png",
     position: "Consultor Cloud SysOps",
     period: "Ene 2024 – Abr 2025",
     responsibilities: [
-      "Administración de instancias EC2 Windows y Linux",
-      "Gestión y despliegue de infraestructura en AWS: VPC, S3, RDS, FSx, IAM, Organizations, Storage Gateway, CloudFormation, AWS Backup",
-      "Implementación de IaC con Terraform",
-      "Migración de servidores on-premises → AWS",
+      "Migración de servidores on-premises a AWS (EC2 Windows y Linux)",
+      "Implementación de IaC con Terraform para +50 recursos en AWS",
+      "Configuración de arquitecturas multi-VPC y backup automatizado",
+      "Reducción de costos operativos del 40% mediante optimización de instancias y storage",
+      "Mejora de disponibilidad al 99.9% con estrategias de backup y disaster recovery",
       "Automatización con Terraform y Ansible"
     ],
     technologies: [
@@ -56,15 +61,16 @@ window.experience = [
   {
     id: 3,
     company: "INTERLAN S.A.S",
+    logo: "assets/img/logo-interlan.png",
     position: "Especialista de TI Nivel 1",
     period: "Nov 2019 – Ene 2024",
     responsibilities: [
-      "Administración de servidores Windows y Linux on-premises",
-      "Gestión en AWS (EC2, VPC, S3, RDS) y Azure Active Directory",
-      "Administración de VMware y Office 365",
-      "Administración de backups en cintas LTO",
-      "Soporte técnico nivel 1 y resolución de incidencias",
-      "Mantenimiento preventivo y correctivo de infraestructura"
+      "Administración de infraestructura híbrida: VMware on-premises + AWS/Azure",
+      "Gestión de AWS (EC2, VPC, S3, RDS) y Azure Active Directory",
+      "Administración de VMware, Hyper-V y Office 365",
+      "Gestión de backups en cintas LTO y soporte multi-plataforma Windows/Linux",
+      "Transición gradual de cargas on-premises a cloud, manteniendo SLA del 99%",
+      "Reducción de tiempos de respuesta a incidentes en infraestructura crítica"
     ],
     technologies: [
       "AWS EC2",
