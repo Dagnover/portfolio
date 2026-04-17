@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderEducation();
   renderSkills();
   renderLanguages();
+  renderPersonalProjects();
 
   // Toggle móvil
   initMobileMenu();
@@ -262,4 +263,27 @@ function initScrollToTop() {
   scrollButton.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+}
+
+// Renderizar proyectos personales
+function renderPersonalProjects() {
+  const container = document.getElementById('personal-projects-container');
+  if (!container || !window.personalProjects) return;
+
+  container.innerHTML = window.personalProjects.map(project => `
+    <article class="personal-project-card">
+      <div class="personal-project-icon">${project.icon}</div>
+      <h3>${project.title}</h3>
+      <p class="personal-project-description">${project.description}</p>
+      <div class="personal-project-details">
+        <h4>Áreas de interés:</h4>
+        <ul class="personal-project-list">
+          ${project.interests.map(interest => `<li>${interest}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="tags">
+        ${project.skills.map(skill => `<span class="tag">${skill}</span>`).join('')}
+      </div>
+    </article>
+  `).join('');
 }
